@@ -7,13 +7,15 @@ class Solution {
         mapping.put('}','{');
         mapping.put(']','[');
         
-        //loop through converte char array 
+        //loop through converted char array 
         for(char c : s.toCharArray()){
             if(mapping.containsValue(c)){
                 //if character value is in mapping push to stack 
                 stack.push(c);
 
             }else if(mapping.containsKey(c)){
+            //if charcter values is  akey in mapp then 
+            //check to see if a) stack is empty or b)if the value of that key does not equal the pop value of the stack 
                 if (stack.isEmpty() || mapping.get(c) != stack.pop()) {
                     return false;
             }
