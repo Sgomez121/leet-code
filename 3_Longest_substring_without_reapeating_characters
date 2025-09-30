@@ -27,19 +27,28 @@ s consists of English letters, digits, symbols and spaces.
 /////////////////////////////////////////////////////////////////////
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int maxLength = 0;
-        int left = 0;
-        Map<Character, Integer> lastSeen = new HashMap<>();
+       int maxLength =0;
+       int left =0;
+       HashMap<Character,Integer> lastSeen = new HashMap<>();
 
-        for (int right = 0; right < s.length(); right++) {
-            char c = s.charAt(right);
-            if (lastSeen.containsKey(c) && lastSeen.get(c) >= left) {
-                left = lastSeen.get(c) + 1;
-            }
-            maxLength = Math.max(maxLength, right - left + 1);
-            lastSeen.put(c, right);
+       for(int right=0; right< s.length();right++){
+        char c=s.charAt(right);
+        //if character in map is TRUE AND the position of that key is bigger than current starting position 
+        if(lastSeen.containsKey(c) && (lastSeen.get(c)>=left) ){
+            System.out.println("Right"+right);
+            System.out.println("left before increment"+left);
+
+            /*if btoh conditions true
+            update the left to the index next to the last occurrence of */
+            left=lastSeen.get(c)+1;
+            System.out.println("left bafter efore increment"+left);
         }
+        maxLength=Math.max(maxLength, right-left+1);
+        System.out.println("length "+maxLength);
+        lastSeen.put(c,right);
 
-        return maxLength;       
+       }
+
+        return maxLength;
     }
 }
